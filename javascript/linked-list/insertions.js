@@ -89,7 +89,7 @@ class LinkedList {
                 if (current.value == newValue) { //* if the current node matches newValue
 
                     let newNode = new Node(newValue); //* create a new node with newValue
-                    current = current.next; //* set the current value of the node to the next node
+                    current = current.next; //* set the current value of the node to the next
 
                     current = newNode //* make the current node the newNode
                     return newNode;
