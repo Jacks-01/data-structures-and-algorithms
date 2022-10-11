@@ -97,18 +97,17 @@ class BST extends BinaryTree {
     }
 
     contains(string) {
+        let exists = false;
         const traverse = (node) => {
-
             if (node.left) traverse(node.left);
-            if (node.value === string) { return true; }
+            if (node.value == string) { exists = true; }
             if (node.right) traverse(node.right)
-            if (node.value === string) { return true; }
-            else { return false; }
-
-
+            if (node.value == string) { exists = true }
+            return exists;
         }
 
         traverse(this.root);
+        return exists;
     }
 };
 
@@ -133,11 +132,11 @@ class BST extends BinaryTree {
 // tree.postOrder();
 
 let tree2 = new BST();
-tree2.insert(24);
+tree2.insert(10);
 tree2.insert(5);
-tree2.insert(6);
-tree2.insert(12);
-tree2.insert(123);
-tree2.insert(22);
-tree2.insert(29);
-console.log(JSON.stringify(tree2));
+tree2.insert(15);
+tree2.insert(1);
+tree2.insert(8);
+tree2.insert(17);
+// console.log(JSON.stringify(tree2));
+console.log(tree2.contains('17'));
