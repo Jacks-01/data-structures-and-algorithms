@@ -73,7 +73,7 @@ class BinaryTree {
 
 class BST extends BinaryTree {
     constructor() {
-        super(root);
+        super();
         this.root = null;
     }
 
@@ -86,14 +86,29 @@ class BST extends BinaryTree {
 
     insertNode(node, newNode) {
         if (newNode.value < node.value) {
-            if (node.left === null) { node.left = newNode; }
-            else { this.insertNode(node.left, newNode); }
+            if (node.left === null) node.left = newNode;
+            else this.insertNode(node.left, newNode);
         }
 
         else {
             if (node.right === null) { node.right = newNode; }
             else { this.insertNode(node.right, newNode); }
         }
+    }
+
+    contains(string) {
+        const traverse = (node) => {
+
+            if (node.left) traverse(node.left);
+            if (node.value === string) { return true; }
+            if (node.right) traverse(node.right)
+            if (node.value === string) { return true; }
+            else { return false; }
+
+
+        }
+
+        traverse(this.root);
     }
 };
 
@@ -102,17 +117,27 @@ class BST extends BinaryTree {
 
 
 
-let tree = new BinaryTree();
-tree.root = new Node(10);
-tree.root.left - new Node(5);
-tree.root.right = new Node(15);
-tree.root.left.left = new Node(1);
-tree.root.left.right = new Node(8);
-tree.root.right.right = new Node(17);
+// let tree = new BinaryTree();
+// tree.root = new Node(10);
+// tree.root.left - new Node(5);
+// tree.root.right = new Node(15);
+// tree.root.left.left = new Node(1);
+// tree.root.left.right = new Node(8);
+// tree.root.right.right = new Node(17);
 
 // preorder: 10, 5, 1, 8 , 15, 17
-tree.preOrder();
+// tree.preOrder();
 // inorder: 1, 5, 8, 10, 15, 17
-tree.inOrder();
+// tree.inOrder();
 // postorder: 1, 8, 5, 17, 15, 10
-tree.postOrder();
+// tree.postOrder();
+
+let tree2 = new BST();
+tree2.insert(24);
+tree2.insert(5);
+tree2.insert(6);
+tree2.insert(12);
+tree2.insert(123);
+tree2.insert(22);
+tree2.insert(29);
+console.log(JSON.stringify(tree2));
