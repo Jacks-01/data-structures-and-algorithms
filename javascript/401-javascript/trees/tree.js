@@ -71,20 +71,72 @@ class BinaryTree {
     }
 }
 
+class BST extends BinaryTree {
+    constructor() {
+        super();
+        this.root = null;
+    }
+
+    insert(value) {
+
+        let newNode = new Node(value);
+        if (this.root === null) { this.root = newNode; }
+        else { this.insertNode(this.root, newNode); }
+    };
+
+    insertNode(node, newNode) {
+        if (newNode.value < node.value) {
+            if (node.left === null) node.left = newNode;
+            else this.insertNode(node.left, newNode);
+        }
+
+        else {
+            if (node.right === null) { node.right = newNode; }
+            else { this.insertNode(node.right, newNode); }
+        }
+    }
+
+    contains(string) {
+        let exists = false;
+        const traverse = (node) => {
+            if (node.left) traverse(node.left);
+            if (node.value == string) { exists = true; }
+            if (node.right) traverse(node.right)
+            if (node.value == string) { exists = true }
+            return exists;
+        }
+
+        traverse(this.root);
+        return exists;
+    }
+};
 
 
 
-let tree = new BinaryTree();
-tree.root = new Node(10);
-tree.root.left - new Node(5);
-tree.root.right = new Node(15);
-tree.root.left.left = new Node(1);
-tree.root.left.right = new Node(8);
-tree.root.right.right = new Node(17);
+
+
+
+// let tree = new BinaryTree();
+// tree.root = new Node(10);
+// tree.root.left - new Node(5);
+// tree.root.right = new Node(15);
+// tree.root.left.left = new Node(1);
+// tree.root.left.right = new Node(8);
+// tree.root.right.right = new Node(17);
 
 // preorder: 10, 5, 1, 8 , 15, 17
-tree.preOrder();
+// tree.preOrder();
 // inorder: 1, 5, 8, 10, 15, 17
-tree.inOrder();
+// tree.inOrder();
 // postorder: 1, 8, 5, 17, 15, 10
-tree.postOrder();
+// tree.postOrder();
+
+let tree2 = new BST();
+tree2.insert(10);
+tree2.insert(5);
+tree2.insert(15);
+tree2.insert(1);
+tree2.insert(8);
+tree2.insert(17);
+// console.log(JSON.stringify(tree2));
+console.log(tree2.contains('17'));
