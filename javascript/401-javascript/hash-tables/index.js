@@ -48,10 +48,28 @@ class HashTable {
         }
     }
 
+    get(key) {
+        let position = this.hash(key)
+
+        if (this.buckets[position]) {
+            let bucket = this.buckets[position]
+
+            let data = bucket.head.data[key]
+
+            return data
+
+        }
+    }
+
+    has() { }
+
+    keys() { }
+
 }
 
 let table = new HashTable(1024);
 console.log(table)
-console.log(table.hash('Jack'));
-table.set('Jack', { name: 'Jack', age: 48 })
-console.log(JSON.stringify(table.buckets[543]));
+table.set('Jack', { name: 'Jack', age: 21 })
+// console.log(JSON.stringify(table.buckets[543]));
+
+console.log(table.get('Jack'))
